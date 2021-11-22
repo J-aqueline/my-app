@@ -1,38 +1,149 @@
-.App {
-  text-align: center;
+@charset "UTF-8";
+
+/* FONTES */
+@import url('https://fonts.googleapis.com/css?family=Acme&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
+@font-face {
+    font-family: Open Sans, sans-serif;
+    src: url('https://fonts.googleapis.com/css?family=Acme&display=swap');
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+@font-face {
+    font-family: Acme, sans-serif;
+    src: url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* RESETS DO HTML */
+* {
+    box-sizing: border-box;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* GERAL */
+body {
+    background-color: rgba(94, 94, 160, 0.767);
+    font-family: Open Sans, sans-serif;
 }
 
-.App-link {
-  color: #61dafb;
+.texto-centro {
+    text-align: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* PROGRAMA */
+h1 {
+    color: white;
+    font-weight: bolder;
+    font-size: 18pt;
+    font-family: Acme, sans-serif;
+    display: block;
+    padding-top: 40px;
+}
+
+p {
+    display: block;
+    padding: 30px 30px 0px 30px;
+}
+
+.entrada-dados {
+    display: block;
+    background-color: #EBEBEB;
+    border-radius: 10px;
+    margin: 15px 15px 2px 15px;
+    padding-bottom: 20px;
+}
+
+.entradas {
+    width: 80%;
+    margin: 2px;
+    padding: 15px;
+    border-radius: 6px;
+    border: transparent;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.356);
+}
+/* botoes*/
+
+.botoes {
+
+    display: flex;
+    justify-content: space-evenly;
+
+
+}
+
+/* botao */
+.botao {
+    width: 200px;
+    height: 50px;
+    background-color: #e63164;
+    font-family: Acme, sans-serif;
+    font-weight: bolder;
+    color: white;
+    border-radius: 6px;
+    border: transparent;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.356);
+    padding: 12px;
+    margin-top: 14px;
+}
+
+.botao-tabela {
+    background-color: #e63164;
+    font-family: Acme, sans-serif;
+    font-weight: bolder;
+    color: white;
+    border-radius: 6px;
+    border: transparent;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.356);
+    padding: 5px 10px 5px 10px;
+}
+
+/* RODAPE */
+.rodape {
+    color: rgba(255, 255, 255, 0.425);
+    font-size: 10pt;
+}
+
+.rodape a {
+    text-decoration: none;
+    text-decoration-style: none;
+    color: rgba(255, 255, 255, 0.425);
+    font-size: 10pt;
+    padding-bottom: 20px;
+}
+
+/* TABELA */
+#comport-table {
+    margin: 6px 15px 6px 15px;
+}
+
+.saida-dados {
+    text-align: center;
+    background-color: #EBEBEB;
+    font-size: 12px;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.saida-dados th {
+    border-bottom: solid 2px rgba(0, 0, 0, 0.219);
+    width: 100%;
+    padding: 0px 10px 0px 10px;
+}
+
+.saida-dados td {
+    padding: 6px 0px 6px 0px;
+    border-bottom: solid 0.5px #0000001f;
+}
+
+/* LAYOUT */
+.container {
+    max-width: 1500px;
+}
+
+/* MEDIA QUERIES */
+@media (max-width: 630px) {
+
+    .entrada-dados {
+        margin-right: 15px;
+        margin-left: 15px;
+    }
 }
