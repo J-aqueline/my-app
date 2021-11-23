@@ -3,18 +3,50 @@ import * as Service from'./service';
 import "./App.css";
 
 function App() {
-const [itemsList,setItemsList] = useState([])
+	const [itemsList,setItemsList] = useState([])
+	const [categoriaList,setCategoriaList] = useState([])
+	const [itemNome,setItemNome] = useState("")
+	const [itemPreco,setItemPreco] = useState(0)
+	const [itemQuantidade,setItemQuantidade] = useState(0)
+	const [itemDescricao,setItemDescricao] = useState("")
+	const [itemIdCategoria,setItemIdCategoria] = useState(-1)
 
-useEffect(() => {
-  const loadAll = async () => {
-    const list = await Service.getAll();
-    setItemsList(list);
-  };
-  
-  loadAll();
-  console.log(itemsList);
-}, []);
 
+	const loadAllItems = async () => {
+		const list = await Service.getAllItem();
+		setItemsList(list);
+	};
+	const loadAllCategorias = async () => {
+		const list = await Service.getAllCategoria();
+		setCategoriaList(list);
+	}
+	useEffect(() => {
+	
+		loadAllItems();
+		loadAllCategorias();
+	}, []);
+
+	const addItem = async () => {
+		await Service.postItem({
+			"nome": itemNome,
+			"descricao": itemDescricao,
+			"quantidade": itemQuantidade,
+			"preco": itemPreco,
+			"idCategoria": itemIdCategoria
+		});
+		await loadAllItems();
+	}
+
+	const excluirItem = async (id) => {
+		await Service.postItem({
+			"nome": itemNome,
+			"descricao": itemDescricao,
+			"quantidade": itemQuantidade,
+			"preco": itemPreco,
+			"idCategoria": itemIdCategoria
+		});
+		await loadAllItems();
+	}
 	return (
 		<div className="App">
 			<main className="texto-centro">
@@ -27,19 +59,40 @@ useEffect(() => {
 						className="entradas"
 						type="text"
 						placeholder="Nome do Item"
+						onChange={((e)=> setItemNome(e.target.value))}
 					/>
 					<input
 						className="entradas"
 						type="number"
 						placeholder="Quantidade"
+						onChange={((e)=> setItemQuantidade(e.target.value))}
 					/>
 					<input
 						className="entradas"
 						type="number"
 						placeholder="Preço R$"
+						onChange={((e)=> setItemPreco(e.target.value))}
+
 					/>
+					<input
+						className="entradas"
+						type="text"
+						placeholder="Descrição"
+						onChange={((e)=> setItemDescricao(e.target.value))}
+						
+					/>
+
+					<select className="entradas" onChange={(e)=> setItemIdCategoria(e.target.options[e.target.selectedIndex].value)}>
+						<option value="-1">Selecionar Categoria</option>
+						{
+							categoriaList.map(categoria => {
+								return <option value={categoria.id}>{categoria.nome}</option>
+							})
+						}
+						
+					</select>
 					<div className = "botoes">
-						<button className="botao">ADICIONAR</button>
+						<button className="botao" onClick={(() => addItem())}>ADICIONAR</button>
 						<button className="botao">EXCLUIR</button>
 					</div>
 					
@@ -48,7 +101,7 @@ useEffect(() => {
                 <div id="comport-table">
                     <table className="saida-dados container">
                         <th>ID</th>
-                        <th colspan="2">NOME</th>
+                        <th>NOME</th>
                         <th>DESCRIÇÃO</th>
                         <th>QUANTIDADE (UNIDADE)</th>
                         <th>PREÇO (R$)</th>
@@ -57,7 +110,7 @@ useEffect(() => {
 						{
 							itemsList.map(x => {
 
-								return <tr>
+								return <tr key={x.id}>
 									<td>{x.id}</td>
 									<td>{x.nome}</td>
 									<td>{x.descricao}</td>
@@ -65,11 +118,7 @@ useEffect(() => {
 									<td>{x.preco}</td>
 									<td>{x.nomeCategoria}</td>
 									<td>
-										<button className="botao-tabela">
-											EDITAR
-										</button>
-
-										<button className="botao-tabela">
+										<button className="botao-tabela" onClick={(() => excluirItem())}>
 											EXCLUIR
 										</button>
 									</td>
