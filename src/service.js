@@ -12,6 +12,10 @@ const basicPost = async (endpoint,obj) => {
      await axios.post(`${API_URL_BASE}${endpoint}`,obj);
 }
 
+const basicDelete = async (endpoint) => {
+    await axios.delete(`${API_URL_BASE}${endpoint}`);
+}
+
 const getAllItem = async() => {
     return await basicFetch('/item')
 } 
@@ -31,6 +35,9 @@ const getCategoriaBySubstring = async(substring) => {
 const postItem = async(item) => {
     return await basicPost('/item',item)
 }
+const deleteItem = async(id) => {
+    return await basicDelete('/item/'+id)
+}
 
 
 export{
@@ -38,5 +45,6 @@ export{
     getAllCategoria,
     getItemBySubstring,
     getCategoriaBySubstring,
-    postItem
+    postItem,
+    deleteItem
 }

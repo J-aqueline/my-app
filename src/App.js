@@ -34,17 +34,17 @@ function App() {
 			"preco": itemPreco,
 			"idCategoria": itemIdCategoria
 		});
+		setItemNome("")
+		setItemDescricao("")
+		setItemPreco(0)
+		setItemQuantidade(0)
+		setItemIdCategoria(-1)
+
 		await loadAllItems();
 	}
 
 	const excluirItem = async (id) => {
-		await Service.postItem({
-			"nome": itemNome,
-			"descricao": itemDescricao,
-			"quantidade": itemQuantidade,
-			"preco": itemPreco,
-			"idCategoria": itemIdCategoria
-		});
+		await Service.deleteItem(id);
 		await loadAllItems();
 	}
 	return (
@@ -60,18 +60,21 @@ function App() {
 						type="text"
 						placeholder="Nome do Item"
 						onChange={((e)=> setItemNome(e.target.value))}
+						value={itemNome}
 					/>
 					<input
 						className="entradas"
 						type="number"
 						placeholder="Quantidade"
 						onChange={((e)=> setItemQuantidade(e.target.value))}
+						value={itemQuantidade}
 					/>
 					<input
 						className="entradas"
 						type="number"
 						placeholder="Preço R$"
 						onChange={((e)=> setItemPreco(e.target.value))}
+						value={itemPreco}
 
 					/>
 					<input
@@ -79,21 +82,21 @@ function App() {
 						type="text"
 						placeholder="Descrição"
 						onChange={((e)=> setItemDescricao(e.target.value))}
+						value={itemDescricao}
 						
 					/>
 
 					<select className="entradas" onChange={(e)=> setItemIdCategoria(e.target.options[e.target.selectedIndex].value)}>
 						<option value="-1">Selecionar Categoria</option>
 						{
-							categoriaList.map(categoria => {
-								return <option value={categoria.id}>{categoria.nome}</option>
+							categoriaList.map(x => {
+								return <option key={x.id}value={x.id}>{x.nome}</option>
 							})
 						}
 						
 					</select>
 					<div className = "botoes">
 						<button className="botao" onClick={(() => addItem())}>ADICIONAR</button>
-						<button className="botao">EXCLUIR</button>
 					</div>
 					
 				</section>
@@ -105,7 +108,6 @@ function App() {
                         <th>DESCRIÇÃO</th>
                         <th>QUANTIDADE (UNIDADE)</th>
                         <th>PREÇO (R$)</th>
-                        <th>AÇÕES</th>
                         <tbody id="resultados">
 						{
 							itemsList.map(x => {
@@ -117,8 +119,9 @@ function App() {
 									<td>{x.quantidade}</td>
 									<td>{x.preco}</td>
 									<td>{x.nomeCategoria}</td>
+									<td>{x.itemIdCategoria}</td>
 									<td>
-										<button className="botao-tabela" onClick={(() => excluirItem())}>
+										<button className="botao-tabela" onClick={() => excluirItem(x.id)}>
 											EXCLUIR
 										</button>
 									</td>
