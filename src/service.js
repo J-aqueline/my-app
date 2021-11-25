@@ -21,7 +21,7 @@ const getAllItem = async() => {
 } 
 
 const getItemBySubstring = async(substring) => {
-    return await basicFetch('/item/'+'substring')
+    return await basicFetch(`/item/${substring}`)
 }
 
 const getAllCategoria = async() => {
@@ -29,7 +29,7 @@ const getAllCategoria = async() => {
 }
 
 const getCategoriaBySubstring = async(substring) => {
-    return await basicFetch('/categoria/'+'substring')
+    return await basicFetch(`/categoria/${substring}`)
 }
 
 const postItem = async(item) => {
