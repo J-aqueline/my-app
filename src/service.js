@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL_BASE = 'http://localhost:8080';
+const API_URL_BASE = 'https://controle-estoque-jaque.herokuapp.com/';
 
 const basicFetch = async (endpoint) => {
     const req = await fetch(`${API_URL_BASE}${endpoint}`);
