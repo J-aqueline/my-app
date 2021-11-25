@@ -4,7 +4,11 @@ const API_URL_BASE = 'http://controle-estoque-jaque.herokuapp.com';
 
 const basicFetch = async (endpoint) => {
     const url = `${API_URL_BASE}${endpoint}`.substring(0, 45) + `/${endpoint}`
-    const req = await axios.get(url);
+    const req = await axios.get(url, {
+        "headers" : {
+            "X-Forwarded-Proto": "http"
+        }
+    });
     return req.data;
 }
 
