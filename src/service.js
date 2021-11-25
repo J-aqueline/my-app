@@ -3,7 +3,8 @@ import axios from "axios";
 const API_URL_BASE = 'https://controle-estoque-jaque.herokuapp.com';
 
 const basicFetch = async (endpoint) => {
-    const req = await axios.get(`${API_URL_BASE}${endpoint}`);
+    const url = `${API_URL_BASE}${endpoint}`.substring(0, 45) + `/${endpoint}`
+    const req = await axios.get(url);
     return req.data;
 }
 
