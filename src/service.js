@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL_BASE = 'https://controle-estoque-jaque.herokuapp.com';
+const API_URL_BASE = 'http://controle-estoque-jaque.herokuapp.com';
 
 const basicFetch = async (endpoint) => {
     const url = `${API_URL_BASE}${endpoint}`.substring(0, 45) + `/${endpoint}`
