@@ -17,26 +17,26 @@ const basicDelete = async (endpoint) => {
 }
 
 const getAllItem = async() => {
-    return await basicFetch('/item')
+    return await basicFetch('item')
 } 
 
 const getItemBySubstring = async(substring) => {
-    return await basicFetch(`/item/${substring}`)
+    return await basicFetch(`item/${substring}`)
 }
 
 const getAllCategoria = async() => {
-    return await basicFetch('/categoria')
+    return await basicFetch('categoria')
 }
 
 const getCategoriaBySubstring = async(substring) => {
-    return await basicFetch(`/categoria/${substring}`)
+    return await basicFetch(`categoria/${substring}`)
 }
 
 const postItem = async(item) => {
-    return await basicPost('/item',item)
+    return await basicPost('item',item)
 }
 const deleteItem = async(id) => {
-    return await basicDelete('/item/'+id)
+    return await basicDelete('item/'+id)
 }
 
 
